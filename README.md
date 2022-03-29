@@ -1,7 +1,8 @@
-# LIBRA_LearnFromFacts
+# Learn From Facts
 
-Learn From Facts
+## Best C# alternative to Prolog
 
+<pre><code>
 namespace LIBRA_LFF
 {
     public class Program
@@ -59,3 +60,4 @@ namespace LIBRA_LFF
         }
     } 
 }
+</code></pre>
