@@ -3,61 +3,29 @@
 ## Best C# alternative to Prolog
 
 <pre><code>
-namespace LIBRA_LFF
+Knowledge know = new Knowledge();
+
+know.ListData = new List<Data>()
 {
-    public class Program
-    {
-        public static void Main()
-        {
-            Knowledge know = new Knowledge();
+    new Data("Fabio", Fact.Is, "human"),
+    new Data("Nicky", Fact.Is, "dog"),
+    new Data("Amanda", Fact.Is, "little princess"),
+    new Data("little princess", Fact.Is, "human"),
+    new Data("human", Fact.NotIs, "little princess")
+};
 
-            know.CaseSensitive = false;
+Console.WriteLine("Fabio is " + Show(know.GetTypes("Fabio")));
+// Fabio is human
 
-            know.ListData = new List<Data>()
-            {
-                new Data("Fabio", "human"),
-                new Data("Nicky", "dog"),
-                new Data("Amanda", "little princess")
-            };
+Console.WriteLine(Show(know.GetNamesOfType("human")) + " is type of human");
+// Fabio, little princess is type of human
 
-            know.listEquivalence = new List<Equivalence>()
-            {
-                new Equivalence("little princess", "human")
-            };
+Console.WriteLine("Fabio is a human? R: " + know.CheckFact("Fabio", "human").ToString());
+// Fabio is a human? R: Yes
 
-            know.ListNeverIs = new List<NeverIs>()
-            {
-                new NeverIs("Fabio", "little princess")
-            };
+Console.WriteLine("Nicky is a human? R: " + know.CheckFact("Nicky", "human").ToString());
+// Nicky is a human? R: NotFound
 
-            Console.WriteLine("Fabio is a human? R: " + know.CheckIs("Fabio", "human").ToString());
-            Console.WriteLine("Nicky is a human? R: " + know.CheckIs("Nicky", "human").ToString());
-            Console.WriteLine("Nicky is a dog? R: " + know.CheckIs("Nicky", "dog").ToString());
-
-
-            Console.Write("\r\n\nAmanda is: ");
-
-            List<string> result = know.Get("Amanda");
-
-            foreach (var item in result)
-                Console.Write(item.ToString() + ", ");
-
-            Console.Write("\r\n\nlittle princess is: ");
-
-            result = know.Get("little princess");
-
-            foreach (var item in result)
-                Console.Write(item.ToString() + ", ");
-
-            Console.Write("\r\n\nFabio is: ");
-
-            result = know.Get("Fabio");
-
-            foreach (var item in result)
-                Console.Write(item.ToString() + ", ");
-
-            Console.ReadKey();
-        }
-    } 
-}
+Console.WriteLine("human is little princess? R: " + know.CheckFact("human", "little princess").ToString());
+// human is little princess? R: No
 </code></pre>
