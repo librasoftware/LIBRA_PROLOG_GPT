@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LIBRA_LFF
+﻿namespace LIBRA_LFF
 {
+    public enum Fact { Is, NotIs }
+
     public class Data
     {
         public string Name { get; set; }
 
+        public Fact Fact { get; set; }
+
         public string Type { get; set; }
 
-        public Data(string name, string type)
+        public Data(string name, Fact Fact, string type)
         {
             this.Type = type;
+            this.Fact = Fact;
             this.Name = name;
         }
     }
